@@ -32,6 +32,8 @@
     <sprite>sprites\s_hp</sprite>
     <sprite>sprites\s_hpBack</sprite>
     <sprite>sprites\s_monIcon</sprite>
+    <sprite>sprites\s_manaIcon</sprite>
+    <sprite>sprites\s_key</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -45,7 +47,7 @@
   <fonts name="fonts">
     <font>fonts\testFont</font>
     <font>fonts\statFont</font>
-    <font>fonts\hurtFont</font>
+    <font>fonts\itemFont</font>
   </fonts>
   <objects name="objects">
     <object>objects\roomPar</object>
@@ -59,6 +61,9 @@
     <object>objects\wallBot</object>
     <object>objects\slash</object>
     <object>objects\hurtText</object>
+    <object>objects\money</object>
+    <object>objects\mana</object>
+    <object>objects\key</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>

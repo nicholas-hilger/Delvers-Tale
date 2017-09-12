@@ -1,14 +1,15 @@
 randomize()
 en = argument0
 
-loss = en.def - att
-if(loss < 1) loss = 1
+en.hp--
+
+if!(player.combo = player.maxCombo) score += (3*player.scoreMod)
+else score += (8*player.scoreMod)
 
 if(en != player) 
 {
-if(player.combo = (player.maxCombo))
+if(player.combo = player.maxCombo)
 {
-loss *= 2
 with(en)
 {
 knockback = 15
@@ -18,8 +19,6 @@ hsp *= player.image_xscale
 }
 }
 }
-
-en.hp -= loss
 
 //with(instance_create(en.x+irandom(48) - 24,en.y + irandom(48) - 24,hurtText)) val = other.loss
 

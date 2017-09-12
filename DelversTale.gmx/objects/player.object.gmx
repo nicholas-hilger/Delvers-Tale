@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>mHp = 30
+            <string>mHp = 6
 hp = mHp
 mAp = 50
 ap = mAp
@@ -51,13 +51,14 @@ returnX = x
 returnY = y
 
 hurting = 0
-goldMod = 1
-hitsXp = 0
-xpMod = 1
 hitsMod = "Passable"
 hits = 0
 hitTimer = 0
 hitsXp = 0
+scoreMod = 1
+
+mp = 0
+keys = 0
 </string>
           </argument>
         </arguments>
@@ -88,7 +89,7 @@ if(hurting != 0) hurting--
 if(attacking = 0) combo = 0
 
 if(hitTimer &gt; 0) hitTimer--
-if(hits &gt; 0 and hitTimer = 0) hits-= 0.1
+if(hits &gt; 0 and hitTimer = 0) hits-= 0.2
 if(hits &gt;= 100) hits = 100
 
 </string>
@@ -134,8 +135,8 @@ devKey = keyboard_check_pressed(ord("Q"))
 if(devKey) 
 {
 //hp -= 10
-xp += 10
-gold += irandom(30) + 70
+hp--
+gold += 5
 }
 
 if(keyboard_check_pressed(ord("R")) and room = room0)
@@ -188,7 +189,7 @@ instance_create(x+(12*image_xscale),y,slash)
 combo++
 if(combo = maxCombo)
 {
-attacking = 35
+attacking = 45
 }
 else 
 {
@@ -207,28 +208,26 @@ if(hits &gt;= 10) hitsMod = "Harsh"
 if(hits &gt;= 30) 
 {
 hitsMod = "Violent"
-goldMod = 1.25
+scoreMod = 2
 }
 if(hits &gt;= 50)
 {
 hitsMod = "Brutal"
-goldMod = 1.50
-xpMod = 1.30
+scoreMod = 3
 }
 if(hits &gt;= 70)
 {
 hitsMod = "Mythic"
-goldMod = 1.75
-xpMod = 1.40
+scoreMod = 4
 }
 if(hits &gt;= 90)
 {
 hitsMod = "Divine"
-goldMod = 2
-xpMod = 1.50
+scoreMod = 5
 }
 
 if(attacking = 20) combo = 0
+
 </string>
           </argument>
         </arguments>
@@ -325,18 +324,28 @@ if(room != room0)
 draw_set_color(c_black)
 draw_rectangle(0,0,1920,120,0)
 draw_set_color(c_white)
-for(i = 0; i &lt; mHp; i++) draw_sprite(s_hpBack,0,50+(24*i),20)
-for(i = 0; i &lt; hp; i++) draw_sprite(s_hp,0,50+(24*i),20)
+for(i = 0; i &lt; mHp; i++) draw_sprite(s_hpBack,0,150+(24*i),20)
+for(i = 0; i &lt; hp; i++) draw_sprite(s_hp,0,150+(24*i),20)
 draw_set_font(statFont)
 draw_set_halign(fa_left)
 draw_set_valign(fa_top)
 draw_set_color(c_white)
+draw_text(5,10,"VITAL")
+draw_text(5,70,"SCORE " + string(score)) 
 draw_sprite(s_specialSlot,0,960,50)
-draw_sprite(s_monIcon,0,1048,32)
+draw_sprite(s_monIcon,0,1026,21)
+draw_sprite(s_manaIcon,0,1026,54)
+draw_sprite(s_key,0,1026,87)
+draw_set_font(itemFont)
+draw_text(1040,16,"x" + string(gold))
+draw_text(1040,48,"x" + string(mp))
+draw_text(1040,80,"x" + string(keys))
+
 
 draw_set_font(statFont)
 draw_set_halign(fa_left)
 draw_text(1600,10,hitsMod)
+if(hits &gt;= 30) draw_text(1600,80,string(scoreMod) + "x SCORE")
 comboColor= c_blue
 if(hits &gt;= 10) comboColor = c_maroon
 if(hits &gt;= 30) 
