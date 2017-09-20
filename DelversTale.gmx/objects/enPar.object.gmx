@@ -25,14 +25,20 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hp = 10
+            <string>hp = 0
 hurting = 0
 def = 0
-xp = 18
-image_speed = 0.2
+xp = 0
 attRange = 58
-moveSpd = 2
+moveSpd = 0
 knockback = 0
+attTime = 0
+attSpd = 480
+attInd = ""
+walkInd = ""
+imSpd = 0
+
+drop = irandom(99) + 1
 </string>
           </argument>
         </arguments>
@@ -56,10 +62,12 @@ knockback = 0
           <argument>
             <kind>1</kind>
             <string>score += (50*player.scoreMod)
-drop = choose(0,0,0,0,0,1,1,1,2,2,3)
-if(drop = 1) instance_create(x,y,money)
-if(drop = 2) instance_create(x,y,mana)
-if(drop = 3) instance_create(x,y,key)
+xPlace = irandom(128) - 64
+yPlace = irandom(128) - 64
+if(drop &gt;= 50 and drop &lt; 80) instance_create(x+xPlace,y+yPlace,money)
+else if(drop &gt;= 80 and drop &lt; 92) instance_create(x+xPlace,y+yPlace,mana)
+else if(drop &gt;= 92 and drop &lt; 98) instance_create(x+xPlace,y+yPlace,key)
+else if(drop &gt;= 98) instance_create(x+xPlace,y+yPlace,food)
 </string>
           </argument>
         </arguments>
@@ -87,8 +95,16 @@ if(hp &lt;= 0 and !knockback and !hurting) instance_destroy()
 
 if(!knockback)
 {
-if(point_distance(x,y,player.x,player.y) &gt; attRange) move_towards_point(player.x,player.y,moveSpd)
-else if(!knockback) motion_set(0,0)
+if(point_distance(x,y,player.x,player.y) &gt; attRange)
+{
+move_towards_point(player.x,player.y,moveSpd)
+attTime -= 0.5
+}
+else if(!knockback)
+{
+motion_set(0,0)
+attTime++
+}
 }
 
 if(knockback &gt; 0)
@@ -99,6 +115,52 @@ if(place_meeting(x+hsp,y,wall)) hsp *= -1
 if(place_meeting(x,y+vsp,wall)) vsp *= -1
 knockback--
 }
+
+
+
+if(attTime &gt;= attSpd)
+{
+with(instance_create(x + (12*image_xscale),y,enSlash)) image_xscale = other.image_xscale
+attTime = 0
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(player.x &lt; x) image_xscale = -1
+else image_xscale = 1
+
+if(x != xprevious or y != yprevious) image_speed = imSpd
+else
+{
+image_speed = 0
+image_index = 0
+}
+
+if(attTime &gt;= round(attSpd/3)) sprite_index = attInd
+else sprite_index = walkInd
+
+//draw_text(x,y-70,drop)
+
+draw_self()
 </string>
           </argument>
         </arguments>

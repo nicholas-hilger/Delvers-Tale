@@ -52,7 +52,7 @@ life = irandom(5) + 3
           <argument>
             <kind>1</kind>
             <string>randomize()
-if(instance_number(roomPar) &lt; 19 and instance_number(lvlGen) &lt; 2)
+if(instance_number(roomPar) &lt; (26 + (4*player.flr)) and instance_number(lvlGen) &lt; 2)
 {
 spawnCh = irandom(1) + 1
 repeat(spawnCh) /*with(instance_find(roomPar,irandom(instance_number(roomPar))))*/ instance_create(x,y,lvlGen)

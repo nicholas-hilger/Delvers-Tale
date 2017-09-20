@@ -10,9 +10,20 @@
     <sound>sound\music3</sound>
     <sound>sound\music4</sound>
     <sound>sound\music5</sound>
+    <sound>sound\monPickup</sound>
+    <sound>sound\manaPickup</sound>
+    <sound>sound\keyPickup</sound>
+    <sound>sound\foodPickup</sound>
+    <sound>sound\comboSound</sound>
+    <sound>sound\hitSound</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\s_playTest</sprite>
+    <sprite>sprites\s_adventurer</sprite>
+    <sprite>sprites\s_mage</sprite>
+    <sprite>sprites\s_knight</sprite>
+    <sprite>sprites\s_takenWalk</sprite>
+    <sprite>sprites\s_takenAttack</sprite>
     <sprite>sprites\s_battleMask</sprite>
     <sprite>sprites\s_lvlGen</sprite>
     <sprite>sprites\s_wall</sprite>
@@ -34,6 +45,8 @@
     <sprite>sprites\s_monIcon</sprite>
     <sprite>sprites\s_manaIcon</sprite>
     <sprite>sprites\s_key</sprite>
+    <sprite>sprites\s_food</sprite>
+    <sprite>sprites\s_lock</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -43,11 +56,13 @@
     <script>scripts\lvlUp.gml</script>
     <script>scripts\chooseMusic.gml</script>
     <script>scripts\attack.gml</script>
+    <script>scripts\classes.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\testFont</font>
     <font>fonts\statFont</font>
     <font>fonts\itemFont</font>
+    <font>fonts\shopFont</font>
   </fonts>
   <objects name="objects">
     <object>objects\roomPar</object>
@@ -57,17 +72,22 @@
     <object>objects\player</object>
     <object>objects\wall</object>
     <object>objects\enPar</object>
+    <object>objects\takenWarrior</object>
     <object>objects\portal</object>
     <object>objects\wallBot</object>
     <object>objects\slash</object>
+    <object>objects\enSlash</object>
     <object>objects\hurtText</object>
+    <object>objects\item</object>
     <object>objects\money</object>
     <object>objects\mana</object>
     <object>objects\key</object>
+    <object>objects\food</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
     <room>rooms\smallBattle</room>
+    <room>rooms\shop</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

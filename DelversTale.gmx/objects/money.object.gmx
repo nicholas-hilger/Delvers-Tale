@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>item</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -62,8 +62,10 @@ image_yscale = 2
 {
 player.gold += val
 score += (val*10)
+audio_play_sound(monPickup,3,0)
 instance_destroy()
 }
+if(!place_meeting(x,y,item)) motion_set(0,0)
 </string>
           </argument>
         </arguments>

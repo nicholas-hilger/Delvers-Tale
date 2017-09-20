@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>image_xscale = player.image_xscale
 image_speed = 1.5
-if(player.combo = 1) image_yscale = -1
+if(player.combo %2 = 0) image_yscale = -1
 att = player.att
 </string>
           </argument>

@@ -26,8 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>discovered = 0
-type = irandom(3)
+type = choose(0,0,0,0,0,0,1,1,1,2,3)
 done = 0
+if(type = 2) locked = 1
+else locked = 0
 </string>
           </argument>
         </arguments>
@@ -73,8 +75,12 @@ done = 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(discovered) draw_self()
-//draw_text(x,y,type)
+            <string>if(discovered) 
+{
+draw_self()
+if(locked) draw_sprite(s_lock,0,x,y)
+}
+//draw_text(x,y,locked)
 </string>
           </argument>
         </arguments>

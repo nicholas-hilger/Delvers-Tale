@@ -29,6 +29,7 @@
 done = 1
 type = 0
 discovered = 1
+locked = 0
 </string>
           </argument>
         </arguments>
